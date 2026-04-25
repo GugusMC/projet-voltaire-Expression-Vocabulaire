@@ -23,7 +23,7 @@ Elle affiche automatiquement la **bonne définition des mots** en s’appuyant s
 
 1. Téléchargez ou clonez ce dépôt
 2. Ouvrez un navigateur Chromium (ex: Brave ou Chrome)
-3. Allez dans : `chrome://extensions/`
+3. Allez dans vos extentions
 4. Activez le **mode développeur**
 5. Cliquez sur **Charger l’extension non empaquetée**
 6. Sélectionnez le dossier du projet
@@ -97,8 +97,7 @@ Les réponses trouvées sont automatiquement enregistrées.
 
 ### 📥 Accéder à la base
 
-1. Cliquez sur les **3 petits points** de l’extension
-2. Cliquez sur **Options**
+![image](https://github.com/GugusMC/projet-voltaire-Expression-Vocabulaire/blob/e1d4a49f2b10e4ea86f6e516d80757e28f894460/Image/Image%202.png)
 
 ---
 
@@ -111,10 +110,7 @@ Les réponses trouvées sont automatiquement enregistrées.
 
 ## 📂 Importer des bases de données
 
-Vous pouvez importer des bases déjà créées :
-
-* Format : `.txt` ou `.json`
-* Structure identique au format ci-dessus
+Vous pouvez importer des bases de données déjà créées en copiant le fichier `.txt`:
 
 ---
 
@@ -126,82 +122,36 @@ Les bases de données sont stockées dans le dossier :
 /datasets
 ```
 
-(ex : niveaux, thèmes, etc.)
-
 ---
 
 ## 🤝 Contribuer
 
-Vous pouvez proposer vos bases de données :
+Vous pouvez proposer vos bases de données:
 
 ### Étapes :
 
-1. Créez un fichier `.txt` ou `.json`
+1. Créez un fichier `.txt`
 2. Respectez le format :
 
 ```json
 {
+    "Mot": "Définition"
     "Mot": "Définition"
 }
 ```
 
 3. Soumettez via Pull Request
 
----
-
-### ✅ Validation des bases (important)
-
-Pour éviter les erreurs :
-
-* Vérifiez chaque définition manuellement
-* Testez votre base avec l’extension
-* Ajoutez une description du niveau concerné
-
-👉 Pour automatiser la validation, vous pouvez :
-
-* Ajouter un script qui compare les réponses avec une base de référence
-* Ou créer une “base validée” séparée (`/validated_datasets`)
 
 ---
 
 ## 🖥️ Console intégrée
 
-Une console est affichée par défaut en bas de la page :
-
-* Permet de voir ce que fait l’IA
-* Aide au debug
+Une console est affichée par défaut en bas de la page pour vous aider au debug si vous voulez modifier le code et utiliser une clée API Gemini par exemple.
 
 ### Masquer la console :
 
 Cliquez sur le bouton **CONSOLE**
-
----
-
-## 🖼️ Ajouter des images au README
-
-### Étapes :
-
-1. Créez un dossier :
-
-```
-/images
-```
-
-2. Ajoutez vos images (ex : `demo.png`)
-
-3. Dans le README, utilisez :
-
-```markdown
-![Description](images/demo.png)
-```
-
----
-
-### Exemple :
-
-```markdown
-![Interface](images/interface.png)
-```
 
 ---
 
@@ -211,18 +161,8 @@ Cliquez sur le bouton **CONSOLE**
 * Certaines définitions peuvent être incorrectes
 * D’où l’importance de :
 
-  * vérifier
   * corriger
   * partager
-
----
-
-## 📌 Roadmap (idées)
-
-* Amélioration de la précision IA
-* Synchronisation cloud des bases
-* Interface d’édition plus avancée
-* Système de validation communautaire
 
 ---
 
@@ -234,6 +174,6 @@ Libre d’utilisation et de modification.
 
 ## ❤️ Remarques
 
-Ce projet est un outil d’aide. Il ne remplace pas l’apprentissage.
+Ce projet est un outil d’aide. Il ~ne~ remplace ~pas~ l’apprentissage.
 
 ---
