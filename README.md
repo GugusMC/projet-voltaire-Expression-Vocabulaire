@@ -15,6 +15,7 @@ Elle affiche automatiquement la **bonne définition des mots** en s’appuyant s
 * 📂 Import/export de bases de données
 * 🖥️ Console intégrée (désactivable)
 
+![Interface](images/Image 1.png)
 ---
 
 ## ⚙️ Installation de l’extension
