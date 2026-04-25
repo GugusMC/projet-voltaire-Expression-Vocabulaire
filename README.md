@@ -16,6 +16,7 @@ Elle affiche automatiquement la **bonne définition des mots** en s’appuyant s
 * 🖥️ Console intégrée (désactivable)
 
 ![Interface](Image/Image 1.png)
+
 ---
 
 ## ⚙️ Installation de l’extension
