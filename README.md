@@ -90,6 +90,7 @@ Les réponses trouvées sont automatiquement enregistrées.
 ```json
 {
     "Mot à définir": "Définition"
+    "Mot à définir": "Définition"
 }
 ```
 
@@ -103,8 +104,10 @@ Les réponses trouvées sont automatiquement enregistrées.
 
 ### ✏️ Modifier la base
 
-* Très simple : éditez directement le JSON
+* Très simple : éditez directement la base de donné dans le cadre
 * Corrigez les erreurs de l’IA si nécessaire
+
+![image](https://github.com/GugusMC/projet-voltaire-Expression-Vocabulaire/blob/17a7472c8ff11602ef78d7397ee268fe36042b8d/Image/Capture%20d'%C3%A9cran%202026-04-25%20165907.png)
 
 ---
 
