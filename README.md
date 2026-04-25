@@ -42,7 +42,8 @@ Elle affiche automatiquement la **bonne définition des mots** en s’appuyant s
 
 ## 🧠 Installation de l’IA locale (LM Studio)
 
-L’extension repose sur une IA locale uniquement pour crée les base de donné, si la base de donné de votre niveau est deja construite dans le dépot, vosu pouvez passer cette partie. Si non, voici comment la configurer :
+L’extension repose sur une IA locale uniquement pour crée les base de donné.
+Si la base de donné de votre niveau est deja construite et est disponible dans le dépot, vous pouvez passer cette partie. Si non, voici comment la configurer :
 
 ### 1. Installer LM Studio
 
