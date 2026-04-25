@@ -123,7 +123,7 @@ Vous pouvez importer des bases de données déjà créées en copiant le fichier
 Les bases de données sont stockées dans le dossier :
 
 ```
-/datasets
+/Base de données
 ```
 
 ---
