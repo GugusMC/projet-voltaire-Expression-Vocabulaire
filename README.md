@@ -15,7 +15,7 @@ Elle affiche automatiquement la **bonne définition des mots** en s’appuyant s
 * 📂 Import/export de bases de données
 * 🖥️ Console intégrée (désactivable)
 
-![Interface](Image/Image 1.png)
+![image](https://github.com/GugusMC/projet-voltaire-Expression-Vocabulaire/blob/4d14d9d8dfaaa9e477cc0e9063b9f19318b2aaea/Image/Image%201.png)
 
 ---
 
