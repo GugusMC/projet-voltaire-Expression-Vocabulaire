@@ -11,7 +11,7 @@ container.appendChild(btn);
 
 // Affichage de la RÉPONSE (Remplace la pop-up)
 const resDiv = document.createElement("div");
-resDiv.style = "padding: 15px; background: #fff; color: #2c3e50; border-left: 5px solid #27ae60; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none; width: 250px; font-weight: 500; font-size: 14px;";
+resDiv.style = "padding: 30px; background: #fff; color: #2c3e50; border-left: 10px solid #27ae60; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none; width: 250px; font-weight: 500; font-size: 10px;";
 container.appendChild(resDiv);
 
 // Bouton pour la console
@@ -41,7 +41,11 @@ function log(msg, color = "#0f0") {
 
 function showResultOnPage(text, isIA = false) {
     resDiv.style.display = "block";
-    resDiv.innerHTML = `<div style="font-size:10px; color:#7f8c8d; margin-bottom:4px;">${isIA ? '🤖 RÉPONSE IA' : '✅ BASE DE DONNÉES'}</div>${text}`;
+    resDiv.innerHTML = `<div style="font-size:15px; color:#7f8c8d; margin-bottom:4px;">${isIA ? '🤖 RÉPONSE IA' : '✅ BASE DE DONNÉES'}</div><div style="font-size:15px">${text}</div>`;
+    // Cache la réponse après 5 secondes pour libérer l'écran
+    setTimeout(() => {
+        resDiv.style.display = "none";
+    }, 6000);
 }
 
 // --- LOGIQUE ---
@@ -55,6 +59,7 @@ btn.onclick = processDefinition;
 async function processDefinition() {
     log("Scan de la page...");
     const wordEl = document.querySelector(".qccv-question");
+    const consigneE1 = document.querySelector(".qccv-instructions");
     const propEls = document.querySelectorAll(".qc-proposal");
 
     if (!wordEl) {
@@ -63,6 +68,7 @@ async function processDefinition() {
     }
 
     const word = wordEl.innerText.trim();
+    const consigne = consigneE1.innerText.trim();
     const proposals = Array.from(propEls).map(el => el.innerText.trim());
 
     chrome.storage.local.get(['vocabDB'], async (res) => {
@@ -87,7 +93,7 @@ async function processDefinition() {
 async function askAI(word, options) {
     const requestData = {
         "model": "meta-llama-3-8b-instruct",
-        "input": `Choisis la bonne définition pour "${word}" parmi : ${options.join(" | ")}. Réponds uniquement par la définition.`,
+        "input": `Choisis la bonne définition pour "${word}" parmi : ${options.join(" | ")}. Voici la consigne : $consigne . Réponds uniquement par la définition.`,
         "temperature": 0
     };
 
@@ -102,3 +108,50 @@ async function askAI(word, options) {
         });
     });
 }
+
+// --- SYSTÈME D'AUTO-CORRECTION (V3 - Sélecteurs Précis) ---
+
+document.addEventListener("click", () => {
+    log("Clic détecté, attente de la validation du site...");
+    
+    // On attend un peu plus longtemps (400ms) pour être sûr que l'animation 
+    // de validation du Projet Voltaire est terminée et que les classes sont posées.
+    setTimeout(() => {
+        // Sélecteur précis : on cherche l'élément qui a TOUTES ces classes
+        const correctEl = document.querySelector(".qc-proposal.correct.locked");
+        const wordEl = document.querySelector(".qccv-question");
+
+        if (correctEl && wordEl) {
+            const trueDefinition = correctEl.innerText.trim();
+            const word = wordEl.innerText.trim();
+            
+            log(`Analyse post-clic pour "${word}"...`);
+
+            chrome.storage.local.get(['vocabDB'], (res) => {
+                let db = res.vocabDB || {};
+
+                // Si la définition en base est différente de la réalité (correctEl)
+                if (db[word] !== trueDefinition) {
+                    log(`⚠️ Discordance ! IA disait: "${db[word]}", La vérité est: "${trueDefinition}"`, "#f39c12");
+                    
+                    db[word] = trueDefinition;
+                    chrome.storage.local.set({ vocabDB: db }, () => {
+                        log("✅ Base de données corrigée avec succès.", "#2ecc71");
+                        
+                        // Mise à jour visuelle immédiate
+                        resDiv.style.display = "block";
+                        resDiv.style.borderLeft = "5px solid #f39c12";
+                        resDiv.innerHTML = `<div style="font-size:10px; color:#f39c12; margin-bottom:4px;">🎯 ERREUR IA CORRIGÉE</div>${trueDefinition}`;
+                        
+                        // Auto-hide après 5s pour la flemme
+                        setTimeout(() => { resDiv.style.display = "none"; }, 5000);
+                    });
+                } else {
+                    log("✅ L'IA avait raison (ou DB déjà à jour).", "#2ecc71");
+                }
+            });
+        } else {
+            log("⏳ Pas encore de classe '.correct.locked' détectée.");
+        }
+    }, 400); 
+}, true);
