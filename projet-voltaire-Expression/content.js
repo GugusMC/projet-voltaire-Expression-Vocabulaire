@@ -42,10 +42,6 @@ function log(msg, color = "#0f0") {
 function showResultOnPage(text, isIA = false) {
     resDiv.style.display = "block";
     resDiv.innerHTML = `<div style="font-size:15px; color:#7f8c8d; margin-bottom:4px;">${isIA ? '🤖 RÉPONSE IA' : '✅ BASE DE DONNÉES'}</div><div style="font-size:15px">${text}</div>`;
-    // Cache la réponse après 5 secondes pour libérer l'écran
-    setTimeout(() => {
-        resDiv.style.display = "none";
-    }, 6000);
 }
 
 // --- LOGIQUE ---
@@ -141,7 +137,7 @@ document.addEventListener("click", () => {
                         // Mise à jour visuelle immédiate
                         resDiv.style.display = "block";
                         resDiv.style.borderLeft = "5px solid #f39c12";
-                        resDiv.innerHTML = `<div style="font-size:10px; color:#f39c12; margin-bottom:4px;">🎯 ERREUR IA CORRIGÉE</div>${trueDefinition}`;
+                        resDiv.innerHTML = `<div style="font-size:15px; color:#f39c12; margin-bottom:4px;">🎯 ERREUR IA CORRIGÉE</div><div style="font-size:15px">${trueDefinition}</div>`;
                         
                         // Auto-hide après 5s pour la flemme
                         setTimeout(() => { resDiv.style.display = "none"; }, 5000);
