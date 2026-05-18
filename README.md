@@ -105,6 +105,7 @@ Les réponses trouvées sont automatiquement enregistrées.
 
 ### ✏️ Modifier la base
 
+Innutile depuis la dernière mise a jour : l'extention corrige maintenant automatiquement ses erreurs.
 * Très simple : éditez directement la base de donné dans le cadre
 * Corrigez les erreurs de l’IA si nécessaire
 
